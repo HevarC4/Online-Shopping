@@ -11,7 +11,8 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('admin.user.index');
+        $datas = User::paginate();
+        return view('admin.user.index', ['datas' => $datas]);
     }
 
     public function create()
@@ -21,27 +22,30 @@ class UserController extends Controller
 
     public function store(UserRequest $request)
     {
-        User::create($request->all('name','email','password','phoneNumber'));
-        return redirect()->back()->with(['msg'=>'بەسەرکەوتوی دروستکرا']);
-    }
-
-    public function show(string $id)
-    {
-        //
+        User::create($request->only('name', 'email', 'password', 'phoneNumber','address'));
+        return redirect()->back()->with(['msg' => 'بەسەرکەوتوی دروستکرا']);
     }
 
     public function edit(string $id)
     {
-        //
+        $datas = User::findOrFail($id);
+        return view('admin.user.edit',compact('datas'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(UserRequest $request, string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        if($request->password)
+            $user->update($request->only('name', 'email', 'password', 'phoneNumber','address'));
+        else
+            $user->update($request->only('name', 'email', 'phoneNumber','address'));
+
+            return redirect()->route('user.index')->with(['msg' => 'بەسەرکەوتوی تازەکرایەوە']);
     }
 
     public function destroy(string $id)
     {
-        //
+        User::findOrFail($id)->delete();
+        return redirect()->route('user.index');
     }
 }
