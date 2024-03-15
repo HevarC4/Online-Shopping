@@ -28,7 +28,7 @@ class UserRequest extends FormRequest
                 'name'=>'required',
                 'email'=>'required|unique:users,email,'.$request->user.'|email',
                 'password'=>'nullable|min:6|confirmed',
-                'phoneNumber' => 'required|string|digits:11|regex:/[0-9]{4}[0-9]{3}[0-9]{4}/',
+                'phoneNumber' => 'required|unique:users,phoneNumber,'.$request->user.'|string|digits:11|regex:/[0-9]{4}[0-9]{3}[0-9]{4}/',
                 'address'=>'nullable'
             ];
         }else{
@@ -36,7 +36,7 @@ class UserRequest extends FormRequest
                 'name'=>'required',
                 'email'=>'required|unique:users,email|email',
                 'password'=>'required|min:6|confirmed',
-                'phoneNumber' => 'required|string|digits:11|regex:/[0-9]{4}[0-9]{3}[0-9]{4}/',
+                'phoneNumber' => 'required|unique:users,phoneNumber|string|digits:11|regex:/[0-9]{4}[0-9]{3}[0-9]{4}/',
                 'address'=>'nullable'
             ];
         }

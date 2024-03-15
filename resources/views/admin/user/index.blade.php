@@ -5,13 +5,13 @@
             href="{{ route('user.create') }}">زیادکردن</a>
     </div>
 
-
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css') }}">
         <script src="{{ asset('js/DataTable.js') }}"></script>
+        <script src="{{ asset('js/deleteAlert.js') }}"></script>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
@@ -41,26 +41,17 @@
                                         <td>{{ $data->email }}</td>
                                         <td>{{ $data->phoneNumber }}</td>
                                         <td>{{ $data->address }}</td>
-
                                         <!-- ... (previous code) ... -->
-                                        {{-- flex items-center justify-center space-y-4 --}}
-                                        <td class="grid grid-cols-2 ">
+                                        <td class="flex items-center justify-center">
                                             <!-- Edit button -->
-                                            <a class="items-center" href="{{ route('user.edit', ['user' => $data->id]) }}">
-                                                <button class="py-2 px-6 text-[15px] text-blue-500" type="submit">
+                                            <a class="" href="{{ route('user.edit', ['user' => $data->id]) }}">
+                                                <button class="py-1 p-3 text-[16px] text-blue-500 place-items-center"
+                                                    type="submit">
                                                     <span>
-                                                        <i class="fas fa-pen items-center"></i>
+                                                        <i class="fas fa-pen"></i>
                                                     </span>
                                                 </button>
                                             </a>
-                                            <!-- Delete button -->
-                                            <form action="{{ route('user.destroy',['user'=>$data->id]) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="py-2 px-6 text-[15px] text-red-500"  type="submit">
-                                                    <span><i class="fas fa-trash items-center"></i></span>
-                                                </button>
-                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
