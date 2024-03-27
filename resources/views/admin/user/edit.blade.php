@@ -26,9 +26,9 @@
                             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-green-700 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                             ناو
                         </label>
-                        <div class="flex items-center justify-center" dir="ltr">
+                        <div class="flex items-center justify-center">
                             @error('name')
-                                <div dir="ltr" class="text-xs text-red-600 mt-2">{{ $message }}</div>
+                                <div class="text-xs text-red-600 mt-2">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-green-700 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                             ئیمەیڵ
                         </label>
-                        <div class="flex items-center justify-center" dir="ltr">
+                        <div class="flex items-center justify-center">
                             @error('email')
                                 <div class="text-xs text-red-600 mt-2">{{ $message }}</div>
                             @enderror
@@ -56,7 +56,7 @@
                             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-green-700 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                             وشەی تێپەڕ
                         </label>
-                        <div class="flex items-center justify-center" dir="ltr">
+                        <div class="flex items-center justify-center">
                             @error('password')
                                 <div class="text-xs text-red-600 mt-2">{{ $message }}</div>
                             @enderror
@@ -70,7 +70,7 @@
                             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-green-700 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                             دووبارە کردنەوەی وشەی تێپەڕ
                         </label>
-                        <div class="flex items-center justify-center" dir="ltr">
+                        <div class="flex items-center justify-center">
                             @error('password_confirmation')
                                 <div class="text-xs text-red-600 mt-2">{{ $message }}</div>
                             @enderror
@@ -85,7 +85,7 @@
                             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-green-700 peer-focus:dark:text-green-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                             ژمارەی تەلەفۆن (0000-000-0700)
                         </label>
-                        <div class="flex items-center justify-center" dir="ltr">
+                        <div class="flex items-center justify-center">
                             @error('phoneNumber')
                                 <div class="text-xs text-red-600 mt-1">{{ $message }}</div>
                             @enderror
@@ -100,9 +100,9 @@
                             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-green-700 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                             ناونیشان
                         </label>
-                        <div class="flex items-center justify-center" dir="ltr">
+                        <div class="flex items-center justify-center">
                             @error('address')
-                                <div dir="ltr" class="text-xs text-red-600 mt-2">{{ $message }}</div>
+                                <div class="text-xs text-red-600 mt-2">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>
