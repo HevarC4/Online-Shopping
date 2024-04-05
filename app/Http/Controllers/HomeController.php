@@ -23,6 +23,20 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        if (auth()->check()) {
+            // Check the user's role
+            if (auth()->user()->role == 1) {
+                // Redirect the user to the dashboard route
+                return redirect()->route('dashboard');
+            } else {
+                // Redirect the user to the index route
+                return redirect()->route('index');
+            }
+        }
+        else {
+            // If the user is not authenticated, redirect to the login page
+            return redirect()->route('login');
+        }
+
     }
 }
