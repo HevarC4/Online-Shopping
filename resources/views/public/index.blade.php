@@ -17,30 +17,15 @@
     @endif
     <div class="grid grid-cols-4 gap-10 mt-10 px-4">
         @if (count($posts) > 0)
-        @foreach ($posts as $row)
-            <div class="h-72 rounded-2xl overflow-hidden relative">
-                <img src="{{ asset('posts/' . $row->image) }}" alt="" class="h-72 w-full object-cover">
-                <div class="absolute h-full w-full  bg-gradient-to-t from-black/80 to-transparent top-0 left-0">
-                    <button
-                        class="w-9 h-9 bg-black/30 text-white rounded-xl flex items-center justify-center relative top-2 right-2">
-                        <i class="fas fa-heart"></i>
-                    </button>
-                    <div class="absolute bottom-3 px-2 w-full space-y-5">
-                        <p class="text-white text-xl">{{ $row->title }}</p>
-                        <p
-                            class="bg-green-800/80 text-center text-sm text-white rounded-lg p-1 pt-2 border-2 border-green-700">
-                            {{ $row->price }} د.ع
-                        </p>
-                    </div>
-                </div>
-            </div>
+            @foreach ($posts as $row)
+                <x-post-component :favId="$favId" :data="$row" />
             @endforeach
         @else
-        <div class="col-span-4 flex justify-center items-center row-span-10 ">
-            <div class="bg-gray-100 border border-gray-300 rounded-md p-5 text-gray-600 text-center">
-                هیچ ئه‌نجامێك نه‌دۆزرایه‌وه‌.
+            <div class="col-span-4 flex justify-center items-center row-span-10 ">
+                <div class="bg-gray-100 border border-gray-300 rounded-md p-5 text-gray-600 text-center">
+                    هیچ ئه‌نجامێك نه‌دۆزرایه‌وه‌.
+                </div>
             </div>
-        </div>
         @endif
     </div>
 @endsection

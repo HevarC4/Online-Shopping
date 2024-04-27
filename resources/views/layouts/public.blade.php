@@ -49,7 +49,34 @@
         <div
             class="basis-3/12 text-left text-xl flex justify-end space-x-5 rtl:space-x-reverse text-gray-500 items-center ">
             <i class="fa-solid fa-cart-shopping"></i>
-            <i class="fas fa-heart"></i>
+            @auth
+                <div class="relative">
+                    <i onclick="showModalUser('FavModal')" class="fas fa-heart cursor-pointer"></i>
+                    @if (count($dtFav) > 0)
+                        <p
+                            class="w-3 h-3 bg-red-500 rounded-full -top-1 absolute text-white text-xs text-[8px] text-center ">
+                            {{ count($dtFav) }}
+                        </p>
+
+                        <div id="FavModal"
+                            class="absolute top-10 hidden -left-6 w-72 max-h-56 overflow-y-scroll bg-white p-2 space-y-2 mt-2 rounded-xl z-10">
+                            @foreach ($dtFav as $row)
+                                <div dir="ltr"
+                                    class="shadow-sm rounded-lg py-2  px-2 flex items-center justify-between text-sm hover:bg-gray-100 hover:shadow-lg">
+                                    <div>
+                                        <img class="w-16 object-cover h-16 rounded-lg"
+                                            src="{{ asset('posts/' . $row->post->image) }}"alt="">
+                                    </div>
+                                    <div class="items-center text-center basis-3/10 text-black ">
+                                        <p>{{ $row->post->title }}</p>
+                                        <p>{{ $row->post->price }}$</p>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
+            @endauth
             <div class="relative" x-data="{ open: false }" dir="ltr">
                 <!-- Avatar button -->
                 <button @click="open = !open" type="button"
@@ -59,7 +86,8 @@
                 </button>
 
                 <!-- Dropdown menu -->
-                <div x-show="open" @click.away="open = false" class="absolute z-20 mt-2 w-64 bg-white rounded-lg shadow-lg overflow-hidden">
+                <div x-show="open" @click.away="open = false"
+                    class="absolute z-20 mt-2 w-64 bg-white rounded-lg shadow-lg overflow-hidden">
                     @if (auth()->check())
                         @foreach ($users as $row)
                             @if ($row->id == auth()->id())
@@ -72,20 +100,25 @@
                                 </div>
                                 <hr>
                                 <ul class="py-1">
-                                    <li><a href="" class="text-center block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">دەربارەی من</a></li>
+                                    <li><a href=""
+                                            class="text-center block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">دەربارەی
+                                            من</a></li>
                                 </ul>
                                 <hr>
                                 <form action="{{ route('logout') }}" method="post" class="flex-grow pt-1">
                                     @csrf
-                                    <button type="submit" class="text-center w-full px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">چوونەدەرەوە</button>
+                                    <button type="submit"
+                                        class="text-center w-full px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">چوونەدەرەوە</button>
                                 </form>
                             @endif
                         @endforeach
                     @else
                         <div class="border-t border-gray-200 text-end">
-                            <a href="{{ route('register') }}" class="block px-6 py-4 text-sm text-gray-700 hover:bg-gray-100">دروستکردنی هەژمار</a>
+                            <a href="{{ route('register') }}"
+                                class="block px-6 py-4 text-sm text-gray-700 hover:bg-gray-100">دروستکردنی هەژمار</a>
                             <hr>
-                            <a href="{{ route('login') }}" class="block px-6 py-4 text-sm text-gray-700 hover:bg-gray-100">کردنەوەی هەژمار</a>
+                            <a href="{{ route('login') }}"
+                                class="block px-6 py-4 text-sm text-gray-700 hover:bg-gray-100">کردنەوەی هەژمار</a>
                         </div>
                     @endif
                 </div>
@@ -165,5 +198,10 @@
         </div>
     </div>
 </body>
+<script>
+    let showModalUser = (id) => {
+        document.getElementById(id).classList.toggle('hidden')
+    };
+</script>
 
 </html>

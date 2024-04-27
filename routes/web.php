@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[PublicController::class,'index'])->name('index');
 
 Route::middleware('auth')->group(function(){
-
+    Route::post('/addTo-FavCard/{id}',[PublicController::class,'AddToFavCard'])->name('AddToFavCard');
     Route::middleware(['isAdmin'])->group(function(){
         Route::get('/dashboard',[DashBoardController::class,'index'])->name('dashboard');
         Route::resource('/admin/user', UserController::class)->except(['show']);
