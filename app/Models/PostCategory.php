@@ -10,8 +10,8 @@ class PostCategory extends Model
     protected $fillable = ['post_id','category_id'];
 
 
-    // public function post()
-    // {
-    //     return $this->belongsTo(Post::class, 'id');
-    // }
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
 }

@@ -20,4 +20,8 @@ class Post extends Model
     {
         return $this->hasMany(PostCategory::class, 'post_id');
     }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class); // Ensure this line is correct
+    }
 }

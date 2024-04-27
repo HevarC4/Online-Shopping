@@ -39,7 +39,8 @@
                 </p>
             </div>
             <div class="space-x-3 rtl:space-x-reverse text-gray-500/70 pt-2">
-                <a href="{{ route('index') }}" class="link-item text-gray-700 pb-4 border-b-2 border-green-600">فرۆشگا</a>
+                <a href="{{ route('index') }}"
+                    class="link-item text-gray-700 pb-4 border-b-2 border-green-600">فرۆشگا</a>
                 <a href="#" class="link-item">داواکردن</a>
                 <a href="#" class="link-item">شوێن</a>
                 <a href="#" class="link-item">بلۆک</a>
@@ -48,9 +49,35 @@
         </div>
         <div
             class="basis-3/12 text-left text-xl flex justify-end space-x-5 rtl:space-x-reverse text-gray-500 items-center ">
-            <i class="fa-solid fa-cart-shopping"></i>
-            <div class="relative">
-                <i onclick="showModalUser('FavModal')" class="fas fa-heart cursor-pointer"></i>
+            @auth
+                <div class="relative">
+                    <i onclick="showModalUser('FavModal')" class="fa-solid fa-cart-shopping cursor-pointer"></i>
+                    @if (count($dtFav) > 0)
+                        <p
+                            class="w-3 h-3 bg-red-500 rounded-full -top-1 absolute text-white text-xs text-[8px] text-center ">
+                            {{ count($dtFav) }}
+                        </p>
+
+                        <div id="FavModal"
+                            class="absolute top-10 hidden -left-6 w-72 max-h-56 overflow-y-scroll bg-white p-2 space-y-2 mt-2 rounded-xl z-10">
+                            @foreach ($dtFav as $row)
+                                <div dir="ltr"
+                                    class="shadow-sm rounded-lg py-2  px-2 flex items-center justify-between text-sm hover:bg-gray-100 hover:shadow-lg">
+                                    <div>
+                                        <img class="w-16 object-cover h-16 rounded-lg"
+                                            src="{{ asset('posts/' . $row->post->image) }}"alt="">
+                                    </div>
+                                    <div class="items-center text-center basis-3/10 text-black ">
+                                        <p>{{ $row->post->title }}</p>
+                                        <p>{{ $row->post->price }}$</p>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
+                <div class="relative">
+                    <i onclick="showModalUser('FavModal')" class="fas fa-heart cursor-pointer"></i>
                     @if (count($dtFav) > 0)
                         <p
                             class="w-3 h-3 bg-red-500 rounded-full -top-1 absolute text-white text-xs text-[8px] text-center ">
@@ -88,40 +115,37 @@
                 <div x-show="open" @click.away="open = false"
                     class="absolute z-20 mt-2 w-64 bg-white rounded-lg shadow-lg overflow-hidden">
                     @if (auth()->check())
-                                <div class="px-4 py-4 text-gray-800">
-                                    <!-- Change text color as needed -->
-                                    <div class="font-sans font-bold text-sm py-1 capitalize">{{ auth()->user()->name }}</div>
-                                    <div class="font-sans font-bold text-gray-600 text-sm py-1 first-letter:capitalize">
-                                        {{ auth()->user()->email }}</div>
-                                    <!-- Change text color as needed -->
-                                </div>
-                                <hr>
-                                <ul class="py-1">
-                                    <li><a href=""
-                                            class="text-center block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">دەربارەی
-                                            من</a></li>
-                                </ul>
-                                <hr>
-                                {{-- <form action="{{ route('profile.index') }}" method="get" class="flex-grow pt-1">
+                        <div class="px-4 py-4 text-gray-800">
+                            <!-- Change text color as needed -->
+                            <div class="font-sans font-bold text-sm py-1 capitalize">{{ auth()->user()->name }}</div>
+                            <div class="font-sans font-bold text-gray-600 text-sm py-1 first-letter:capitalize">
+                                {{ auth()->user()->email }}</div>
+                            <!-- Change text color as needed -->
+                        </div>
+                        <hr>
+                        <ul class="py-1">
+                            <li><a href=""
+                                    class="text-center block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">دەربارەی
+                                    من</a></li>
+                        </ul>
+                        <hr>
+                        {{-- <form action="{{ route('profile.index') }}" method="get" class="flex-grow pt-1">
                                     @csrf
                                     <button type="submit"
                                         class="text-center w-full px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">پڕۆفایل</button>
                                 </form> --}}
-                                <hr>
-                                <ul class="py-1">
-                                    <li><a href="{{ route('profile.index') }}"
-                                            class="text-center block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">پڕۆفایل
-                                            </a></li>
-                                </ul>
-                                <hr>
-                                <form action="{{ route('logout') }}" method="post" class="flex-grow pt-1">
-                                    @csrf
-                                    <button type="submit"
-                                        class="text-center w-full px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">چوونەدەرەوە</button>
-                                </form>
-
-
-
+                        <hr>
+                        <ul class="py-1">
+                            <li><a href="{{ route('profile.index') }}"
+                                    class="text-center block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">پڕۆفایل
+                                </a></li>
+                        </ul>
+                        <hr>
+                        <form action="{{ route('logout') }}" method="post" class="flex-grow pt-1">
+                            @csrf
+                            <button type="submit"
+                                class="text-center w-full px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">چوونەدەرەوە</button>
+                        </form>
                     @else
                         <div class="border-t border-gray-200 text-end">
                             <a href="{{ route('register') }}"

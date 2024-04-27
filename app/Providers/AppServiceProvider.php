@@ -22,13 +22,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-
         view()->composer('layouts.public', function ($view) {
             $dt = [];
             if (Auth::user()) {
-                $dt = FavCart::where('user_id', Auth::id())->with('post')->get();
+                $dt = FavCart::where('user_id', Auth::id())->where(['state'=>0])->with('post')->get();
+                // $dt2 = FavCart::where('user_id', Auth::id())->where(['state'=>1])->with('post')->get();
             }
-            $view->with(['dtFav'=> $dt]);
+            $view->with(['dtFav'=> $dt ]);
         });
     }
 }
