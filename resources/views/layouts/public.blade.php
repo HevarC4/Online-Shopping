@@ -49,9 +49,8 @@
         <div
             class="basis-3/12 text-left text-xl flex justify-end space-x-5 rtl:space-x-reverse text-gray-500 items-center ">
             <i class="fa-solid fa-cart-shopping"></i>
-            @auth
-                <div class="relative">
-                    <i onclick="showModalUser('FavModal')" class="fas fa-heart cursor-pointer"></i>
+            <div class="relative">
+                <i onclick="showModalUser('FavModal')" class="fas fa-heart cursor-pointer"></i>
                     @if (count($dtFav) > 0)
                         <p
                             class="w-3 h-3 bg-red-500 rounded-full -top-1 absolute text-white text-xs text-[8px] text-center ">
