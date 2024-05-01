@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Auth;
 
 class PublicController extends Controller
 {
+    public function show(){
+        return view('public.index');
+    }
     public function index(Request $request)
     {
         $users = User::all();
@@ -32,7 +35,7 @@ class PublicController extends Controller
         }
         return view('public.index', compact('posts', 'users', 'favId'));
     }
-    
+
     public function AddToFavCard($id)
     {
         Post::findOrFail($id);

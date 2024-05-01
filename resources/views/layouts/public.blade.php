@@ -39,7 +39,7 @@
                 </p>
             </div>
             <div class="space-x-3 rtl:space-x-reverse text-gray-500/70 pt-2">
-                <a href="#" class="link-item text-gray-700 pb-4 border-b-2 border-green-600">فرۆشگا</a>
+                <a href="{{ route('index') }}" class="link-item text-gray-700 pb-4 border-b-2 border-green-600">فرۆشگا</a>
                 <a href="#" class="link-item">داواکردن</a>
                 <a href="#" class="link-item">شوێن</a>
                 <a href="#" class="link-item">بلۆک</a>
@@ -89,13 +89,11 @@
                 <div x-show="open" @click.away="open = false"
                     class="absolute z-20 mt-2 w-64 bg-white rounded-lg shadow-lg overflow-hidden">
                     @if (auth()->check())
-                        @foreach ($users as $row)
-                            @if ($row->id == auth()->id())
                                 <div class="px-4 py-4 text-gray-800">
                                     <!-- Change text color as needed -->
-                                    <div class="font-sans font-bold text-sm py-1 capitalize">{{ $row->name }}</div>
+                                    <div class="font-sans font-bold text-sm py-1 capitalize">{{ auth()->user()->name }}</div>
                                     <div class="font-sans font-bold text-gray-600 text-sm py-1 first-letter:capitalize">
-                                        {{ $row->email }}</div>
+                                        {{ auth()->user()->email }}</div>
                                     <!-- Change text color as needed -->
                                 </div>
                                 <hr>
@@ -105,13 +103,26 @@
                                             من</a></li>
                                 </ul>
                                 <hr>
+                                {{-- <form action="{{ route('profile.index') }}" method="get" class="flex-grow pt-1">
+                                    @csrf
+                                    <button type="submit"
+                                        class="text-center w-full px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">پڕۆفایل</button>
+                                </form> --}}
+                                <hr>
+                                <ul class="py-1">
+                                    <li><a href="{{ route('profile.index') }}"
+                                            class="text-center block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">پڕۆفایل
+                                            </a></li>
+                                </ul>
+                                <hr>
                                 <form action="{{ route('logout') }}" method="post" class="flex-grow pt-1">
                                     @csrf
                                     <button type="submit"
                                         class="text-center w-full px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">چوونەدەرەوە</button>
                                 </form>
-                            @endif
-                        @endforeach
+
+
+
                     @else
                         <div class="border-t border-gray-200 text-end">
                             <a href="{{ route('register') }}"
