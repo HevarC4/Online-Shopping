@@ -16,7 +16,7 @@ let deleteData = () => {
             });
             setTimeout(() => {
                 document.getElementById('deleteForm').submit();
-            }, 1000);
+            }, 1200);
         }
     });
 }

@@ -16,8 +16,8 @@
         <p class="mt-4 text-gray-400 text-sm "> ئەنجامی گەڕان بۆ " {{ request('q') }} "</p>
     @endif
     <div class="grid grid-cols-4 gap-10 mt-10 px-4">
-        @if (count($posts) > 0)
-            @foreach ($posts as $row)
+        @if (count($posts->get()) > 0)
+            @foreach ($posts->get() as $row)
                 <x-post-component :favId="$favId" :data="$row" />
             @endforeach
         @else

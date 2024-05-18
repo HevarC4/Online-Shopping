@@ -11,6 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
@@ -31,9 +32,11 @@
     <div class="flex justify-between items-center px-2 pb-1 pt-2 border-b-2">
         <div class="basis-7/12 flex justify-between">
             <div class="flex items-center space-x-2 rtl:space-x-reverse">
-                <div class="h-10 w-10 rounded-full bg-green-600 text-white flex items-center justify-center">
-                    <i class="fa-solid fa-shirt"></i>
-                </div>
+                <a href="{{ route('index') }}">
+                    <div class="h-10 w-10 rounded-full bg-green-600 text-white flex items-center justify-center">
+                        <i class="fa-solid fa-shirt"></i>
+                    </div>
+                </a>
                 <p class="font-bold">
                     جلوبەرگ
                 </p>
@@ -51,27 +54,28 @@
             class="basis-3/12 text-left text-xl flex justify-end space-x-5 rtl:space-x-reverse text-gray-500 items-center ">
             @auth
                 <div class="relative">
-                    <i onclick="showModalUser('FavModal')" class="fa-solid fa-cart-shopping cursor-pointer"></i>
-                    @if (count($dtFav) > 0)
+                    <i onclick="showModalUser('CardModal')" class="fa-solid fa-cart-shopping cursor-pointer"></i>
+                    @if (count($dtCard) > 0)
                         <p
                             class="w-3 h-3 bg-red-500 rounded-full -top-1 absolute text-white text-xs text-[8px] text-center ">
-                            {{ count($dtFav) }}
+                            {{ count($dtCard) }}
                         </p>
-
-                        <div id="FavModal"
+                        <div id="CardModal"
                             class="absolute top-10 hidden -left-6 w-72 max-h-56 overflow-y-scroll bg-white p-2 space-y-2 mt-2 rounded-xl z-10">
-                            @foreach ($dtFav as $row)
-                                <div dir="ltr"
-                                    class="shadow-sm rounded-lg py-2  px-2 flex items-center justify-between text-sm hover:bg-gray-100 hover:shadow-lg">
-                                    <div>
-                                        <img class="w-16 object-cover h-16 rounded-lg"
-                                            src="{{ asset('posts/' . $row->post->image) }}"alt="">
+                            @foreach ($dtCard as $row)
+                                <a href="{{ route('showPost', ['id' => $row->post->id]) }}">
+                                    <div dir="ltr"
+                                        class="shadow-sm rounded-lg py-2  px-2 flex items-center justify-between text-sm hover:bg-gray-100 hover:shadow-lg">
+                                        <div>
+                                            <img class="w-16 object-cover h-16 rounded-lg"
+                                                src="{{ asset('posts/' . $row->post->image) }}"alt="">
+                                        </div>
+                                        <div class="items-center text-center basis-3/10 text-black ">
+                                            <p>{{ $row->post->title }}</p>
+                                            <p>{{ $row->post->price }}$</p>
+                                        </div>
                                     </div>
-                                    <div class="items-center text-center basis-3/10 text-black ">
-                                        <p>{{ $row->post->title }}</p>
-                                        <p>{{ $row->post->price }}$</p>
-                                    </div>
-                                </div>
+                                </a>
                             @endforeach
                         </div>
                     @endif
@@ -87,17 +91,19 @@
                         <div id="FavModal"
                             class="absolute top-10 hidden -left-6 w-72 max-h-56 overflow-y-scroll bg-white p-2 space-y-2 mt-2 rounded-xl z-10">
                             @foreach ($dtFav as $row)
-                                <div dir="ltr"
-                                    class="shadow-sm rounded-lg py-2  px-2 flex items-center justify-between text-sm hover:bg-gray-100 hover:shadow-lg">
-                                    <div>
-                                        <img class="w-16 object-cover h-16 rounded-lg"
-                                            src="{{ asset('posts/' . $row->post->image) }}"alt="">
+                                <a href="{{ route('showPost', ['id' => $row->post->id]) }}">
+                                    <div dir="ltr"
+                                        class="shadow-sm rounded-lg py-2  px-2 flex items-center justify-between text-sm hover:bg-gray-100 hover:shadow-lg">
+                                        <div>
+                                            <img class="w-16 object-cover h-16 rounded-lg"
+                                                src="{{ asset('posts/' . $row->post->image) }}"alt="">
+                                        </div>
+                                        <div class="items-center text-center basis-3/10 text-black ">
+                                            <p>{{ $row->post->title }}</p>
+                                            <p>{{ $row->post->price }}$</p>
+                                        </div>
                                     </div>
-                                    <div class="items-center text-center basis-3/10 text-black ">
-                                        <p>{{ $row->post->title }}</p>
-                                        <p>{{ $row->post->price }}$</p>
-                                    </div>
-                                </div>
+                                </a>
                             @endforeach
                         </div>
                     @endif
@@ -110,7 +116,6 @@
                     <img src="https://cdn.icon-icons.com/icons2/2643/PNG/512/male_boy_person_people_avatar_icon_159358.png"
                         alt="User dropdown" class="w-full h-full rounded-full">
                 </button>
-
                 <!-- Dropdown menu -->
                 <div x-show="open" @click.away="open = false"
                     class="absolute z-20 mt-2 w-64 bg-white rounded-lg shadow-lg overflow-hidden">
@@ -157,18 +162,6 @@
                     @endif
                 </div>
             </div>
-
-            <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
-
-            <script>
-                document.addEventListener("DOMContentLoaded", function() {
-                    var dropdown = document.querySelector("[x-data] [x-show]");
-                    if (dropdown) {
-                        dropdown.__x.$data.open = false;
-                    }
-                });
-            </script>
-
         </div>
     </div>
     <div class="flex">
@@ -177,41 +170,40 @@
                 <div class="border-b-2 py-3">
                     <p class="px-5 p-2">فلتەر</p>
                 </div>
-                <div class="border-b-2 pb-4">
-                    <p class="my-3 px-5 p-2">پۆلەکان</p>
-                    <form action="" class="px-5 text-gray-500 text-sm space-y-4">
+                <form id="form" action="{{ route('index') }}" class="px-5 text-gray-500 text-sm space-y-4">
+                    <div class="border-b-2 pb-4">
+                        <p class="my-3 px-5 p-2">پۆلەکان</p>
+                        @foreach ($category as $row)
+                            <div class="flex items-center">
+                                @if (request('category'))
+                                    <input onchange="submitForm()"
+                                        {{ in_array($row->id, request('category')) ? 'checked' : '' }} type="checkbox"
+                                        name="category[]" value="{{ $row->id }}"
+                                        class="accent-green-500 text-white">
+                                @else
+                                    <input onchange="submitForm()" type="checkbox" name="category[]"
+                                        value="{{ $row->id }}" class="accent-green-500 text-white">
+                                @endif
+                                <span class="mr-2">{{ $row->name }}</span>
+                            </div>
+                        @endforeach
 
-                        <div class="flex items-center">
-                            <input type="checkbox" class="accent-green-500 text-white">
-                            <span class="mr-2">پیاوان</span>
-                        </div>
-                        <div class="flex items-center">
-                            <input type="checkbox" class="accent-green-500 text-white">
-                            <span class="mr-2">ئافرەتان</span>
-                        </div>
-                        <div class="flex items-center">
-                            <input type="checkbox" class="accent-green-500 text-white">
-                            <span class="mr-2">منداڵان</span>
-                        </div>
-                        <div class="flex items-center">
-                            <input type="checkbox" class="accent-green-500 text-white">
-                            <span class="mr-2">هاوینە</span>
-                        </div>
-                        <button class="w-full items-center">ئەوانی تر <i class="fa-solid fa-angle-down"></i></button>
-                    </form>
-                </div>
-                <div class="border-b-2 pb-4">
-                    <p class="my-2 px-5 p-2">مەودای نرخەکان</p>
-                    <div class="w-8/12 mx-auto mt-2 flex flex-wrap justify-between">
-                        <input type="text" placeholder="کەمترین"
-                            class="w-4/12 px-1 py-1 text-sm text-center border border-gray-400 focus:outline-none rounded-lg focus:bg-gray-200">
-                        <input type="text" placeholder="زۆرترین"
-                            class="w-4/12 px-1 py-1 text-sm text-center border border-gray-400 focus:outline-none rounded-lg focus:bg-gray-200">
-                        <button
-                            class="mt-4 bg-green-600 text-white text-center px-4 py-1 rounded-xl w-full hover:bg-green-700">
-                            نرخ دیاری بکە</button>
                     </div>
-                </div>
+                    <div class="border-b-2 pb-4">
+                        <p class="my-2 px-5 p-2">مەودای نرخەکان</p>
+                        <div class="w-8/12 mx-auto mt-2 flex flex-wrap justify-between">
+                            <input name="min" value="{{ request('min') ? request('min') : '' }}" type="text"
+                                placeholder="کەمترین"
+                                class="w-4/12 mx-2 py-1 text-sm text-center border border-gray-400 focus:outline-none rounded-lg focus:bg-gray-200">
+                            <input name="max" value="{{ request('max') ? request('max') : '' }}" type="text"
+                                placeholder="بەرزترین"
+                                class="w-4/12 mx-2 py-1 text-sm text-center border border-gray-400 focus:outline-none rounded-lg focus:bg-gray-200">
+                            <button
+                                class="mt-4 bg-green-600 text-white text-center px-4 py-1 rounded-xl w-full hover:bg-green-700">
+                                نرخ دیاری بکە</button>
+                        </div>
+                    </div>
+                </form>
                 <div class="border-b-2">
                     <div class="bg-green-600 flex items-center justify-center px-3 py-4">
                         <div class="basis-11/12 text-center px-5 py-5 rounded bg-green-500">
@@ -236,6 +228,20 @@
     let showModalUser = (id) => {
         document.getElementById(id).classList.toggle('hidden')
     };
+
+    let submitForm = () => {
+        document.getElementById('form').submit();
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var dropdown = document.querySelector("[x-data] [x-show]");
+        if (dropdown) {
+            dropdown.__x.$data.open = false;
+        }
+    });
 </script>
 
 </html>
