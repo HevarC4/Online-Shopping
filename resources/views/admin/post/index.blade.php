@@ -31,6 +31,7 @@
                                     <th>نرخ</th>
                                     <th>ڕەنگ</th>
                                     <td>سایز</td>
+                                    <td>داشکاندن</td>
                                     <th>ژمارەی بەشاکان</th>
                                     <th>وێنە</th>
                                     <th>کاتی دروستبوون</th>
@@ -46,6 +47,7 @@
                                         <td>{{ $data->price }}</td>
                                         <td>{{ $data->color }}</td>
                                         <td>{{ $data->size }}</td>
+                                        <td>%{{ $data->discount }}</td>
                                         <td class=" w-28 text-center">{{ $data->categories_count }}</td>
                                         <td>
                                             <img class="w-24" src="{{ asset('posts/' . $data->image . '') }}"

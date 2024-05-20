@@ -12,9 +12,18 @@
         @endauth
         <div class="absolute bottom-3 px-2 w-full space-y-5">
             <p class="text-white text-xl">{{ $row->title }}</p>
+            @if ($row->discount > 0)
+            <p class="bg-yellow-800/80 text-center text-sm  text-white rounded-lg p-1 pt-2 border-2 border-yellow-700">
+                <del class=" pl-4">
+                    {{ $row->price}} د.ع
+                </del>
+                <span class="pr-4">{{ ($row->price * $row->discount)}} د.ع  </span>
+            </p>
+            @else
             <p class="bg-green-800/80 text-center text-sm text-white rounded-lg p-1 pt-2 border-2 border-green-700">
                 {{ $row->price }} د.ع
             </p>
+            @endif
         </div>
     </div>
 </a>

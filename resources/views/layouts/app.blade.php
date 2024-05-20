@@ -42,6 +42,9 @@
                 <div class="mt-3 p-2  m-1 {{ in_array(Route::currentRouteName(),['post.index','post.create','post.edit'])?'bg-gray-800 rounded-lg':'' }}">
                     <a href="{{ route('post.index') }}"> کاڵاکان</a>
                 </div>
+                <div class="mt-3 p-2  m-1 {{ in_array(Route::currentRouteName(),['transaction.index'])?'bg-gray-800 rounded-lg':'' }}">
+                    <a href="{{ route('transaction.index') }}">فرۆشراوەکان</a>
+                </div>
             </div>
 
             <form class="absolute bottom-5 w-full text-center" id="logout-form" action="{{ route('logout') }}"

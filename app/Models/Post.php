@@ -9,7 +9,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'price', 'description', 'color', 'size', 'image'];
+    protected $fillable = ['title', 'price', 'description', 'color', 'size', 'image','discount'];
 
     /**
      * Get all of the comments for the Post

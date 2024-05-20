@@ -33,6 +33,10 @@ class PublicController extends Controller
             $posts->whereBetween('price',[$request->min,$request->max]);
         }
 
+        if($request->discount)
+            $posts->where('discount', '>', '0');
+
+
         $favId = [];
 
         if (Auth::user()) {
@@ -41,6 +45,8 @@ class PublicController extends Controller
                 $favId[] = $value->post_id;
             }
         }
+
+
         return view('public.index', compact('posts', 'users', 'favId'));
     }
 

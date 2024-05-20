@@ -93,6 +93,7 @@ class PostController extends Controller
         $post->description = $request->input('description');
         $post->color = $request->input('color');
         $post->size = $request->input('size');
+        $post->discount = $request->input('discount');
         $post->save();
 
         //update بەشەکان

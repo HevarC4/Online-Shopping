@@ -3,9 +3,11 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashBoardController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicController;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +27,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('/admin/user', UserController::class)->except(['show']);
         Route::resource('/admin/category', CategoryController::class)->except(['show']);
         Route::resource('/admin/post', PostController::class)->except(['show']);
+        Route::resource('/admin/transaction',TransactionController::class)->except(['create','edit' , 'store' , 'show']);
+
     });
     Route::resource('/profile', ProfileController::class)->except('create', 'show');
     Route::post('buy/{id}',[PublicController::class,'buy'])->name('buy');

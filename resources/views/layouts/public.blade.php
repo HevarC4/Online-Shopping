@@ -164,7 +164,7 @@
             </div>
         </div>
     </div>
-    <div class="flex">
+    <div class="flex ">
         <div class="basis-1/5">
             <div class="border-l-2">
                 <div class="border-b-2 py-3">
@@ -172,9 +172,9 @@
                 </div>
                 <form id="form" action="{{ route('index') }}" class="px-5 text-gray-500 text-sm space-y-4">
                     <div class="border-b-2 pb-4">
-                        <p class="my-3 px-5 p-2">پۆلەکان</p>
+                        <p class="my-3 px-5 p-2 ">پۆلەکان</p>
                         @foreach ($category as $row)
-                            <div class="flex items-center">
+                            <div class="flex items-center pt-3">
                                 @if (request('category'))
                                     <input onchange="submitForm()"
                                         {{ in_array($row->id, request('category')) ? 'checked' : '' }} type="checkbox"
@@ -204,15 +204,15 @@
                         </div>
                     </div>
                 </form>
-                <div class="border-b-2">
+                <div class="border-b-2 flex bottom-0  left-0 right-0">
                     <div class="bg-green-600 flex items-center justify-center px-3 py-4">
                         <div class="basis-11/12 text-center px-5 py-5 rounded bg-green-500">
-                            <p class="text-center text-xl text-white pb-2"> داشکاندنی ٣٠٪</p>
-                            <p class="text-center text-xs text-gray-100"> هاوڕێکانت بێبەش مەکە لەم ئۆفەرە هەر ئێستا
-                                هاوبەشی پێبکە لە کرینی جلوبەرگ</p>
-                            <button
-                                class="bg-yellow-400 rounded-lg text-sm text-center w-8/12 mt-4 mb-1 mx-auto py-1 hover:bg-yellow-500">
-                                هاوبەشیکردن</button>
+                            <p class="text-center text-xl text-white pb-2"> داشکاندنەکان </p>
+                            <p class="text-center text-xs text-gray-100 mb-4"> بۆ بیننینی داشکاندنەکان کلیک لەم بەتنە بکە
+                            </p>
+                            <a href="{{ route('index') }}? discount=true"
+                                class="bg-yellow-400 rounded-lg text-sm text-center w-8/12 mb-1 mx-auto py-1 px-3 hover:bg-yellow-500">
+                                هاوبەشیکردن</a>
                         </div>
                     </div>
                 </div>
