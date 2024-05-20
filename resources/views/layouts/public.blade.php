@@ -24,7 +24,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script defer src="{{ asset('js/cleanSearch.js') }}"></script>
-    <script defer src="{{ asset('js/nextItem.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 </head>
 
@@ -41,13 +40,13 @@
                     جلوبەرگ
                 </p>
             </div>
-            <div class="space-x-3 rtl:space-x-reverse text-gray-500/70 pt-2">
+            <div class="space-x-10 rtl:space-x-reverse text-gray-500/70 pt-2 ">
                 <a href="{{ route('index') }}"
-                    class="link-item text-gray-700 pb-4 border-b-2 border-green-600">فرۆشگا</a>
-                <a href="#" class="link-item">داواکردن</a>
-                <a href="#" class="link-item">شوێن</a>
-                <a href="#" class="link-item">بلۆک</a>
-                <a href="#" class="link-item">یارمەتی</a>
+                    class="  {{ Route::currentRouteName() == 'index' ?' text-gray-700 border-green-600 border-b-2 pb-4' : ''  }}">فرۆشگا</a>
+                {{-- <a href="#" class="link-item">داواکردن</a> --}}
+                <a href="{{ route('map') }}" class="   {{ Route::currentRouteName() == 'map' ?'text-gray-700 border-green-600 border-b-2 pb-4' : ''  }}">شوێن</a>
+                {{-- <a href="#" class="link-item">بلۆک</a> --}}
+                <a href="#" class="link-item">پەیوەندی</a>
             </div>
         </div>
         <div
@@ -134,11 +133,6 @@
                                     من</a></li>
                         </ul>
                         <hr>
-                        {{-- <form action="{{ route('profile.index') }}" method="get" class="flex-grow pt-1">
-                                    @csrf
-                                    <button type="submit"
-                                        class="text-center w-full px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">پڕۆفایل</button>
-                                </form> --}}
                         <hr>
                         <ul class="py-1">
                             <li><a href="{{ route('profile.index') }}"

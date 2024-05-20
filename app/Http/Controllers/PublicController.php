@@ -99,4 +99,8 @@ class PublicController extends Controller
         Transaction::where('id' , $id)->where('state' , 0)-> where('user_id' , auth()->id())->delete();
         return redirect()->back();
     }
+
+    public function map(){
+        return view('public.map');
+    }
 }

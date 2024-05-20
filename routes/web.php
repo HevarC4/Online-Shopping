@@ -35,5 +35,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('delete/{id}',[PublicController::class,'delete'])->name('delete');
 });
 Route::get('/post/{id}', [PublicController::class, 'showPost'])->name('showPost');
+Route::get('/map', [PublicController::class, 'map'])->name('map');
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
