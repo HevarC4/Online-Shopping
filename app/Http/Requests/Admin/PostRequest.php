@@ -28,7 +28,7 @@ class PostRequest extends FormRequest
                 'description'   =>'required',
                 'color' =>'required',
                 'size'  =>'required',
-                'image' =>'nullable|mimes:png,jpg,jpeg',
+                'image' =>'nullable|mimes:png,jpg,jpeg,webp,avif',
                 // 'category[]'=>'required'
             ];
         }else{
@@ -38,7 +38,7 @@ class PostRequest extends FormRequest
                 'description'   =>'required',
                 'color' =>'required',
                 'size'  =>'required',
-                'image' =>'required|mimes:png,jpg,jpeg',
+                'image' =>'required|mimes:png,jpg,jpeg,webp,avif',
                 // 'category[]'=>'required'
 
             ];

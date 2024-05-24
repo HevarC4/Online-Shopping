@@ -17,7 +17,7 @@
                 <del class=" pl-4">
                     {{ $row->price}} د.ع
                 </del>
-                <span class="pr-4">{{ ($row->price * $row->discount)}} د.ع  </span>
+                <span class="pr-4">{{ $row->discount > 0 ? $row->price * (1 - $row->discount) : $row->price }} د.ع  </span>
             </p>
             @else
             <p class="bg-green-800/80 text-center text-sm text-white rounded-lg p-1 pt-2 border-2 border-green-700">

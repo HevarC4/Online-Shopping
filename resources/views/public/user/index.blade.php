@@ -25,6 +25,24 @@
             </div>
         </div>
     </div>
+    <div class="mb-6">
+        <h1 class="text-2xl font-bold mb-4 text-center pt-4">مامەڵەکانت</h1>
+        <div class="bg-white p-4 rounded shadow-md flex justify-center">
+            <div class="ml-28">
+                <h2 class="text-xl font-semibold mb-2 mr-8">کۆی نرخی بەرهەمەکان:</h2>
+                <p class="text-2xl text-green-500 font-bold mr-8 text-center">
+                    د.ع {{ number_format($totalPrice, 2) }}
+                </p>
+            </div>
+            <div class="mr-28">
+                <h2 class="text-xl font-semibold mb-2 mr-8">کۆی گشتی بەرهەمەکانی داواکراو:</h2>
+                <p class="text-2xl text-green-500 font-bold mr-8 text-center">
+                    {{ $totalCount }}
+
+                </p>
+            </div>
+        </div>
+    </div>
     <div id="app" dir="ltr" class="px-6 py-4 shadow-lg rounded-lg bg-slate-100/50->post">
         <div class="card has-table">
             <div class="card-content">
@@ -45,7 +63,7 @@
                             @foreach ($posts as $data)
                                 <tr class="text-[0.8rem]">
                                     <td>{{ $data->post->title }}</td>
-                                    <td>{{ $data->post->price }}</td>
+                                    <td>{{ ($data->post->discount > 0)? $data->post->price * $data->post->discount : $data->post->price  }}</td>
                                     <td>{{ $data->post->color }}</td>
                                     <td>{{ $data->post->size }}</td>
                                     <td>

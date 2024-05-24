@@ -49,7 +49,7 @@ body{
 .container button{
     background-color: rgb(61, 197, 82);
     color: #fff;
-    font-size: 12px;
+    font-size: 14px;
     padding: 10px 45px;
     border: 1px solid transparent;
     border-radius: 8px;
@@ -84,6 +84,7 @@ body{
     border-radius: 8px;
     width: 100%;
     outline: none;
+    font-size: 15px;
 }
 
 .form-container{
@@ -141,6 +142,7 @@ body{
     margin: 0 3px;
     width: 40px;
     height: 40px;
+
 }
 
 .toggle-container{

@@ -28,7 +28,6 @@ Route::middleware('auth')->group(function () {
         Route::resource('/admin/category', CategoryController::class)->except(['show']);
         Route::resource('/admin/post', PostController::class)->except(['show']);
         Route::resource('/admin/transaction',TransactionController::class)->except(['create','edit' , 'store' , 'show']);
-
     });
     Route::resource('/profile', ProfileController::class)->except('create', 'show');
     Route::post('buy/{id}',[PublicController::class,'buy'])->name('buy');

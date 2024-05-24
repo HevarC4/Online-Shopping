@@ -22,7 +22,7 @@ class UserController extends Controller
 
     public function store(UserRequest $request)
     {
-        User::create($request->only('name', 'email', 'password', 'phoneNumber','address'));
+        User::create($request->only('name', 'email', 'password', 'phoneNumber','address','role'));
         return redirect()->back()->with(['msg' => 'بەسەرکەوتوی زیادکرا']);
     }
 
@@ -36,9 +36,9 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         if($request->password)
-            $user->update($request->only('name', 'email', 'password', 'phoneNumber','address'));
+            $user->update($request->only('name', 'email', 'password', 'phoneNumber','address','role'));
         else
-            $user->update($request->only('name', 'email', 'phoneNumber','address'));
+            $user->update($request->only('name', 'email', 'phoneNumber','address','role'));
 
             return redirect()->back()->with(['msg' => 'بەسەرکەوتوی تازەکرایەوە']);
     }

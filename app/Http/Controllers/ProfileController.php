@@ -15,7 +15,14 @@ class ProfileController extends Controller
     {
         $posts = Transaction::where('user_id',auth()->id())->with('post')->get();
 
-        return view('public.user.index',compact('posts'));
+        $totalPrice = $posts->sum(function($transaction) {
+            $discount = $transaction->post->discount ?? 0;
+            $discountedPrice = $transaction->post->price * (1 - $discount);
+            return $discountedPrice > 0 ? $discountedPrice : 0;
+        });
+
+        $totalCount = $posts->count();
+        return view('public.user.index',compact('posts','totalPrice','totalCount'));
     }
 
     public function edit(string $id)

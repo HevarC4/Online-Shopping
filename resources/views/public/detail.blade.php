@@ -1,17 +1,20 @@
 @extends('layouts.public')
 @section('content')
-@if (session()->get('msg'))
-    <p class="text-green-500 text-center py-6 text-xl ">{{ session()->get('msg') }}</p>
-@endif
+    @if (session()->get('msg'))
+        <p class="text-green-500 text-center py-6 text-xl ">{{ session()->get('msg') }}</p>
+    @endif
     <div class="flex flex-wrap">
         <img class="w-3/12 rounded-lg object-cover" src="{{ asset('posts/' . $data->image) }}" alt="">
         <div class="w-9/12 px-10">
             <div class="grid grid-cols-5 gap-5 mb-8">
                 <p class="bg-green-500 text-center py-1 pt-1 text-white rounded-full px-2">تایتڵ: {{ $data->title }}</p>
-                <p class="bg-green-500 text-center py-1 pt-1  text-white rounded-full px-2">نرخ: {{ ($data->discount > 0)? $data->price * $data->discount : $data->price  }}</p>
+                <p class="bg-green-500 text-center py-1 pt-1  text-white rounded-full px-2">نرخ:
+                    {{ $data->discount > 0 ? $data->price * (1 - $data->discount) : $data->price }}
+                </p>
                 <p class="bg-green-500 text-center py-1 pt-1 text-white rounded-full px-2">سایز: {{ $data->size }}</p>
                 <p class="bg-green-500 text-center py-1 pt-1 text-white rounded-full px-2">ڕەنگ: {{ $data->color }}</p>
-                <p class="bg-green-500 text-center py-1 pt-1 text-white rounded-full px-2">داشکاندن: {{ $data->discount }}</p>
+                <p class="bg-green-500 text-center py-1 pt-1 text-white rounded-full px-2">داشکاندن: {{ $data->discount }}
+                </p>
             </div>
             <div class="my-2 shadow p-4 rounded-xl">
                 {{ $data->description }}
@@ -23,7 +26,7 @@
             </div>
             @auth
                 <div class="flex text-sm mt-10 items-center justify-between">
-                    <form action="{{ route('buy',['id'=>$data->id])  }}" method="POST" id="buyForm">
+                    <form action="{{ route('buy', ['id' => $data->id]) }}" method="POST" id="buyForm">
                         @csrf
                         <input name="post_id" type="hidden" value="{{ $data->id }}">
                         <button type="button" onclick="buy()" class="bg-green-600 text-white px-4 rounded py-1">کڕین</button>

@@ -1,7 +1,6 @@
 <head>
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
 </head>
 
 <body>
@@ -9,8 +8,9 @@
         <div class="form-container sign-in">
             <form method="POST" action="{{ route('login') }}">
                 @csrf
-                <h1>Sign In</h1>
-                <input type="email" placeholder="Email" class=" @error('email') is-invalid @enderror" name="email"
+                <h1>چوونە ژوورەوە</h1>
+                <br>
+                <input type="email" placeholder="ئیمێڵ" class=" @error('email') is-invalid @enderror" name="email"
                     value="{{ old('email') }}" autocomplete="email" autofocus>
                 <div>
                     @error('email')
@@ -20,7 +20,7 @@
                     @enderror
                 </div>
 
-                <input id="password" type="password" placeholder="Password"
+                <input id="password" type="password" placeholder="وشەی نهێنی"
                     class="form-control @error('password') is-invalid @enderror" name="password"
                     autocomplete="current-password">
                 <div>
@@ -30,18 +30,10 @@
                         </span>
                     @enderror
                 </div>
-
-                <div class="flex items-center">
-                    <input class="" type="checkbox" name="remember" id="remember"
-                        {{ old('remember') ? 'checked' : '' }}>
-                    <label class="form-check-label" for="remember">
-                        {{ __('Remember Me') }}
-                    </label>
-                </div>
-
+                <br>
                 <div class="">
                     <button type="submit">
-                        {{ __('Login') }}
+                        {{ __('چوونە ژوورەوە') }}
                     </button>
 
                     @if (Route::has('password.request'))
@@ -57,10 +49,10 @@
             <div class="toggle">
 
                 <div class="toggle-panel toggle-right">
-                    <h1>Welcome, Friend!</h1>
-                    <p>Enter your personal details to use all of site features</p>
+                    <h1>! بەخێربێیت هاوڕێ</h1>
+                    <p>زانیارییە کەسییەکانت بنووسە بۆ بەکارهێنانی هەموو تایبەتمەندییەکانی ماڵپەڕەکە</p>
                     <a href="{{ route('register') }}">
-                        <button class="hidden" id="register">Sign Up</button>
+                        <button class="hidden" id="register">خۆت تۆمار بکە</button>
                     </a>
                 </div>
             </div>

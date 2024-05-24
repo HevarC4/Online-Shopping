@@ -30,6 +30,7 @@
                                     <th>ئیمەیڵ</th>
                                     <th>ژمارەی تەلەفۆن</th>
                                     <th>ناونیشان</th>
+                                    <th>دەسەڵات</th>
                                     <th>کردارەکان</th>
                                 </tr>
                             </thead>
@@ -41,6 +42,7 @@
                                         <td>{{ $data->email }}</td>
                                         <td>{{ $data->phoneNumber }}</td>
                                         <td>{{ $data->address }}</td>
+                                        <td>{{ $data->role?'Admin':'User' }}</td>
                                         <!-- ... (previous code) ... -->
                                         <td class="flex items-center justify-center">
                                             <!-- Edit button -->

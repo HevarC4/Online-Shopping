@@ -46,7 +46,7 @@
                 {{-- <a href="#" class="link-item">داواکردن</a> --}}
                 <a href="{{ route('map') }}" class="   {{ Route::currentRouteName() == 'map' ?'text-gray-700 border-green-600 border-b-2 pb-4' : ''  }}">شوێن</a>
                 {{-- <a href="#" class="link-item">بلۆک</a> --}}
-                <a href="#" class="link-item">پەیوەندی</a>
+                {{-- <a href="#" class="link-item">پەیوەندی</a> --}}
             </div>
         </div>
         <div
@@ -126,12 +126,12 @@
                                 {{ auth()->user()->email }}</div>
                             <!-- Change text color as needed -->
                         </div>
-                        <hr>
+                        {{-- <hr>
                         <ul class="py-1">
                             <li><a href=""
                                     class="text-center block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">دەربارەی
                                     من</a></li>
-                        </ul>
+                        </ul> --}}
                         <hr>
                         <hr>
                         <ul class="py-1">
